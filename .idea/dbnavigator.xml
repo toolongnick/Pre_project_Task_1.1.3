@@ -24,11 +24,7 @@
     <autoscroll-to-editor value="false" />
     <autoscroll-from-editor value="true" />
     <show-object-properties value="false" />
-    <loaded-nodes>
-      <connection connection-id="4b1944cb-0f8f-40d3-ae0a-cc11f3d3e095">
-        <schema name="sergeytdb" object-types="table, view" />
-      </connection>
-    </loaded-nodes>
+    <loaded-nodes />
   </component>
   <component name="DBNavigator.Project.DatabaseConsoleManager">
     <connection id="4b1944cb-0f8f-40d3-ae0a-cc11f3d3e095">
