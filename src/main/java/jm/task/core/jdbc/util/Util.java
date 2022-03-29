@@ -5,18 +5,22 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class Util {
-    private static String url = "jdbc:mysql://localhost:3306/sergeytdb";
-    private static String userName = "root";
-    private static String password = "Z,elepyfnml;fded41";
 
-    public static Connection getConnection() {
-        Connection connection = null;
+    private static Connection connection;
+
+    static
+    {
+        String url = "jdbc:mysql://localhost:3306/sergeytdb";
+        String userName = "root";
+        String password = "Z,elepyfnml;fded41";
         try {
             connection = DriverManager.getConnection(url, userName, password);
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
+        } catch (SQLException throwable) {
+            throwable.printStackTrace();
         }
+    }
+
+    public static Connection getConnection() {
         return connection;
-        // реализуйте настройку соеденения с БД
     }
 }
