@@ -24,9 +24,10 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void createUsersTable() {
-        try (Connection connection = Util.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CREATE_TABLE)) {
+        try {
+            Connection connection = Util.getConnection();
             connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(CREATE_TABLE);
             preparedStatement.execute();
             connection.commit();
         } catch (SQLException throwable) {
@@ -35,9 +36,10 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void dropUsersTable() {
-        try (Connection connection = Util.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(DROP_TABLE)) {
+        try {
+            Connection connection = Util.getConnection();
             connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(DROP_TABLE);
             preparedStatement.execute();
             connection.commit();
         } catch (SQLException throwable) {
@@ -46,8 +48,9 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void saveUser(String name, String lastName, byte age) {
-        try (Connection connection = Util.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER)) {
+        try {
+            Connection connection = Util.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(ADD_USER);
             connection.setAutoCommit(false);
             preparedStatement.setString(1, name);
             preparedStatement.setString(2, lastName);
@@ -60,9 +63,10 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void removeUserById(long id) {
-        try (Connection connection = Util.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER)) {
+        try {
+            Connection connection = Util.getConnection();
             connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(DELETE_USER);
             preparedStatement.setLong(1, id);
             preparedStatement.executeUpdate();
             connection.commit();
@@ -73,11 +77,11 @@ public class UserDaoJDBCImpl implements UserDao {
 
     public List<User> getAllUsers() {
         List<User> list = new ArrayList<>();
-        try (Connection connection = Util.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL)) {
+        try {
+            Connection connection = Util.getConnection();
             connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(GET_ALL);
             ResultSet resultSet = preparedStatement.executeQuery();
-
             while (resultSet.next()) {
                 long ID = resultSet.getInt("UserID");
                 String name = resultSet.getString("UserName");
@@ -91,7 +95,6 @@ public class UserDaoJDBCImpl implements UserDao {
                 }
             }
             connection.commit();
-
         } catch (SQLException throwable) {
             throwable.printStackTrace();
         }
@@ -99,9 +102,10 @@ public class UserDaoJDBCImpl implements UserDao {
     }
 
     public void cleanUsersTable() {
-        try (Connection connection = Util.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(CLEAN_TABLE)) {
+        try {
+            Connection connection = Util.getConnection();
             connection.setAutoCommit(false);
+            PreparedStatement preparedStatement = connection.prepareStatement(CLEAN_TABLE);
             preparedStatement.execute();
             connection.commit();
         } catch (SQLException throwable) {
